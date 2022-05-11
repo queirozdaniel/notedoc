@@ -2,9 +2,9 @@
 </script>
 
 <template>
-  <main>
-    <router-view />
-  </main>
+  <RouterLink to="/">Notes</RouterLink> |
+  <RouterLink to="/stats">Stats</RouterLink>
+  <RouterView />
 </template>
 
 <style>
