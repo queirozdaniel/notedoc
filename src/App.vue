@@ -1,8 +1,9 @@
 
 <template>
   <NavBar />
-  
-  <RouterView />
+  <div class="container is-max-desktop px-4 py-4">
+    <RouterView />
+  </div>
 </template>
 
 <script setup lang="ts">
