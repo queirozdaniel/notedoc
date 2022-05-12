@@ -6,7 +6,8 @@
         <div class="control">
           <textarea class="textarea" 
             v-model="newNote"
-            placeholder="Add a new note"></textarea>
+            placeholder="Add a new note"
+            ref="newNoteRef"></textarea>
         </div>
       </div>
   
@@ -45,6 +46,7 @@ import type Note from '@/views/models/Note'
 import { ref } from 'vue'
 
 const newNote = ref('')
+const newNoteRef = ref()
 
 const notes = ref<Array<Note>>([
   {
@@ -63,6 +65,12 @@ const addNote = () => {
     content: newNote.value
   }
   notes.value.unshift(note)
+  reset()
+}
+
+const reset = () => {
+  newNote.value = ''
+  newNoteRef.value.focus()
 }
 
 </script>
