@@ -23,32 +23,25 @@
       </div>
     </div>
 
-    <div 
+    <Note 
       v-for="note in notes"
       :key="note.id"
-      class="card mb-4">
-      <div class="card-content">
-        <div class="content">
-           {{note.content}}
-        </div>
-      </div>
-      <footer class="card-footer">
-        <a href="#" class="card-footer-item">Edit</a>
-        <a href="#" class="card-footer-item">Delete</a>
-      </footer>
-    </div>
+      :note="note"
+    />
+
   </div>
 </template>
 
 <script setup lang="ts">
 
-import type Note from '@/views/models/Note'
 import { ref } from 'vue'
+import type NoteModel from '@/models/NoteModel'
+import Note from '@/components/Notes/Note.vue'
 
 const newNote = ref('')
 const newNoteRef = ref()
 
-const notes = ref<Array<Note>>([
+const notes = ref<Array<NoteModel>>([
   {
     id: 1,
     content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam beatae cum, quaerat laborum laboriosam blanditiis magni eveniet nisi placeat harum!'
@@ -60,7 +53,7 @@ const notes = ref<Array<Note>>([
 ])
 
 const addNote = () => {
-  let note: Note = {
+  let note: NoteModel = {
     id: new Date().getTime(),
     content: newNote.value
   }
