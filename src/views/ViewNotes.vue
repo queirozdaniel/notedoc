@@ -27,7 +27,6 @@
       v-for="note in storeNotes.notes"
       :key="note.id"
       :note="note"
-      @deleteClicked="deleteNote"
     />
 
   </div>
@@ -46,17 +45,6 @@ const storeNotes = useStoreNotes()
 const newNote = ref('')
 const newNoteRef = ref()
 
-// const notes = ref<Array<NoteModel>>([
-//   {
-//     id: 1,
-//     content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam beatae cum, quaerat laborum laboriosam blanditiis magni eveniet nisi placeat harum!'
-//   },
-//   {
-//     id: 2,
-//     content: 'This is an important information adipisicing elit. Quisquam beatae cum, quaerat laborum laboriosam blanditiis magni eveniet nisi placeat harum!'
-//   },
-// ])
-
 const addNote = () => {
   let note: NoteModel = {
     id: new Date().getTime(),
@@ -64,10 +52,6 @@ const addNote = () => {
   }
   storeNotes.addNote(note)
   reset()
-}
-
-const deleteNote = (idToDelete: number) => {
-  // notes.value = notes.value.filter(item => item.id !== idToDelete)
 }
 
 const reset = () => {

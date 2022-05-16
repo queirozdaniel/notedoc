@@ -20,6 +20,9 @@ export const useStoreNotes = defineStore('storeNotes',{
   actions: {
     addNote(newNote: NoteModel) {
       this.notes.unshift(newNote)
+    },
+    deleteNote(id: number) {
+      this.notes = this.notes.filter(item => item.id !== id)
     }
   }
 })
