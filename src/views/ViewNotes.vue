@@ -24,7 +24,7 @@
     </div>
 
     <Note 
-      v-for="note in notes"
+      v-for="note in storeNotes.notes"
       :key="note.id"
       :note="note"
       @deleteClicked="deleteNote"
@@ -34,36 +34,40 @@
 </template>
 
 <script setup lang="ts">
-
 import { ref } from 'vue'
 import type NoteModel from '@/models/NoteModel'
 import Note from '@/components/Notes/Note.vue'
+import { useStoreNotes } from '@/stores/storeNotes'
+
+// Stores
+
+const storeNotes = useStoreNotes()
 
 const newNote = ref('')
 const newNoteRef = ref()
 
-const notes = ref<Array<NoteModel>>([
-  {
-    id: 1,
-    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam beatae cum, quaerat laborum laboriosam blanditiis magni eveniet nisi placeat harum!'
-  },
-  {
-    id: 2,
-    content: 'This is an important information adipisicing elit. Quisquam beatae cum, quaerat laborum laboriosam blanditiis magni eveniet nisi placeat harum!'
-  },
-])
+// const notes = ref<Array<NoteModel>>([
+//   {
+//     id: 1,
+//     content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam beatae cum, quaerat laborum laboriosam blanditiis magni eveniet nisi placeat harum!'
+//   },
+//   {
+//     id: 2,
+//     content: 'This is an important information adipisicing elit. Quisquam beatae cum, quaerat laborum laboriosam blanditiis magni eveniet nisi placeat harum!'
+//   },
+// ])
 
 const addNote = () => {
   let note: NoteModel = {
     id: new Date().getTime(),
     content: newNote.value
   }
-  notes.value.unshift(note)
+  storeNotes.addNote(note)
   reset()
 }
 
 const deleteNote = (idToDelete: number) => {
-  notes.value = notes.value.filter(item => item.id !== idToDelete)
+  // notes.value = notes.value.filter(item => item.id !== idToDelete)
 }
 
 const reset = () => {
